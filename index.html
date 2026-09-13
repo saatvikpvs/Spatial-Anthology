@@ -3,27 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Studio-KDC</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<title>SPATIAL ANTHOLOGY</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #080809;
-  --text: #ede9e3;
-  --muted: #8a8578;
-  --card: #0e0e10;
-  --line: #1e1e22;
-  --gold: #c9a96e;
-  --gold2: #e8c98a;
-  --glow: rgba(201, 169, 110, 0.18);
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #4d4d4d;
+  --card: #f7f7f7;
+  --line: #eaeaea;
+  --gold: #111111;
+  --gold2: #333333;
+  --glow: rgba(17, 17, 17, 0.08);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 body {
-  font-family: 'Jost', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -59,12 +64,14 @@ a { text-decoration: none; color: inherit; }
 .navbar {
   position: fixed;
   top: 0; width: 100%;
-  height: 72px;
+  height: 86px;
   z-index: 9000;
+  background: #ffffff;
   transition: background 0.4s ease, backdrop-filter 0.4s;
+  border-bottom: 1px solid var(--line);
 }
 .navbar.scrolled {
-  background: rgba(8, 8, 9, 0.88);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -72,35 +79,36 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 72px;
+  height: 86px;
 }
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
 }
-.brand img { height: 34px; filter: brightness(1.1); }
+.brand img {
+  height: 72px;
+  width: auto;
+  filter: brightness(1.1);
+}
 .brand span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: var(--text);
+  display: none;
 }
 .nav ul {
   list-style: none;
   display: flex;
-  gap: 32px;
+  gap: 38px;
+  align-items: center;
 }
 .nav a {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 2.5px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.8px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #111111;
   transition: color 0.25s;
   position: relative;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 .nav a::after {
   content: '';
@@ -121,7 +129,7 @@ a { text-decoration: none; color: inherit; }
 #intro {
   position: fixed;
   inset: 0;
-  background: #060607;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,41 +146,32 @@ a { text-decoration: none; color: inherit; }
   animation: introFadeUp 1.2s ease forwards;
 }
 .intro-content img {
-  height: 80px;
-  margin-bottom: 28px;
+  height: min(62vh, 520px);
+  width: auto;
+  max-width: 90vw;
+  margin-bottom: 18px;
   opacity: 0;
   animation: introFadeUp 1s 0.3s ease forwards;
 }
 .intro-content h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 80px);
-  font-weight: 300;
-  letter-spacing: 8px;
-  color: var(--text);
-  opacity: 0;
-  animation: introFadeUp 1s 0.6s ease forwards;
+  display: none;
 }
 .intro-content p {
-  font-size: 11px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 16px;
-  opacity: 0;
-  animation: introFadeUp 1s 0.9s ease forwards;
+  display: none;
 }
 .intro-content span {
   display: block;
-  margin-top: 48px;
+  margin-top: 18px;
   font-size: 11px;
   letter-spacing: 3px;
-  color: var(--muted);
+  color: #111111;
+  text-transform: uppercase;
   opacity: 0;
   animation: introFadeUp 1s 1.4s ease forwards;
 }
 .intro-line {
   width: 1px; height: 0;
-  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  background: linear-gradient(to bottom, transparent, #111111, transparent);
   margin: 20px auto 0;
   animation: lineGrow 1s 2s ease forwards;
 }
@@ -193,11 +192,13 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: #ffffff;
 }
 .hero-video-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: none;
 }
 .hero-video-bg video {
   width: 100%; height: 100%;
@@ -232,24 +233,24 @@ a { text-decoration: none; color: inherit; }
   font-size: 11px;
   letter-spacing: 6px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #111111;
   margin-bottom: 24px;
   opacity: 0;
   animation: heroFade 1s 0.2s ease forwards;
 }
 .hero-content h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: clamp(48px, 7vw, 96px);
   font-weight: 300;
   line-height: 1.05;
   letter-spacing: 2px;
-  color: var(--text);
+  color: #111111;
   opacity: 0;
   animation: heroFade 1.2s 0.5s ease forwards;
 }
 .hero-content h1 em {
   font-style: italic;
-  color: var(--gold2);
+  color: #333333;
 }
 .hero-content p {
   max-width: 520px;
@@ -257,39 +258,40 @@ a { text-decoration: none; color: inherit; }
   font-size: 15px;
   font-weight: 300;
   line-height: 1.8;
-  color: rgba(237,233,227,0.65);
+  color: rgba(17,17,17,0.7);
   letter-spacing: 0.5px;
   opacity: 0;
   animation: heroFade 1s 0.9s ease forwards;
 }
 .hero-scroll-hint {
   position: absolute;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 36px;
+  left: calc(50% - 24px);
   z-index: 2;
+  width: 48px;
+  height: 48px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  cursor: pointer;
   opacity: 0;
   animation: heroFade 1s 1.6s ease forwards;
 }
-.hero-scroll-hint span {
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--muted);
+.scroll-chevron {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid #111111;
+  border-bottom: 1.5px solid #111111;
+  transform: rotate(45deg);
+  animation: chevronBounce 1.8s 2.6s ease-in-out infinite;
 }
-.scroll-line {
-  width: 1px;
-  height: 50px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s 2s ease-in-out infinite;
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
+  50%      { transform: translateY(8px) rotate(45deg); opacity: 0.5; }
 }
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.1); }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-chevron { animation: none; }
 }
 @keyframes heroFade {
   from { opacity: 0; transform: translateY(16px); }
@@ -312,7 +314,7 @@ section:not(#home) {
   margin-bottom: 16px;
 }
 .section-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: clamp(36px, 4vw, 56px);
   font-weight: 300;
   line-height: 1.1;
@@ -346,6 +348,7 @@ section:not(#home) {
   pointer-events: none;
 }
 .about-text p {
+  font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.9;
@@ -360,161 +363,76 @@ section:not(#home) {
   .about-top { grid-template-columns: 1fr; gap: 36px; }
 }
 
-/* ─── TIMELINE ─── */
-.timeline-wrap {
-  max-width: 500px;
-  margin: 52px 0 0;
-}
-.timeline-card {
-  background: linear-gradient(135deg, #0e0e10 0%, #111114 100%);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 28px 24px;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s ease;
-}
-.timeline-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px; height: 100%;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  border-radius: 4px 0 0 4px;
-}
-.timeline-card h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-.timeline-card p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--muted);
-  font-weight: 300;
-}
-.timeline-slider {
-  width: 100%;
-  appearance: none;
-  height: 2px;
-  background: var(--line);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-}
-.timeline-slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 16px; height: 16px;
-  background: var(--gold);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 12px var(--gold);
-}
-.timeline-slider::-moz-range-thumb {
-  width: 16px; height: 16px;
-  background: var(--gold);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 12px var(--gold);
-}
-.timeline-years {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 12px;
-  letter-spacing: 1px;
-}
-
 /* ─── PROJECT GRID ─── */
-.grid {
+.project-wrap {
+  width: min(calc(100% - 6rem), 92%);
+  margin: 0 auto;
+}
+.project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 12px;
 }
-@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-
-/* ─── 3D TILT CARD ─── */
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
+.project-card {
   cursor: pointer;
+  background: #ffffff;
+  outline: none;
+}
+.project-media {
   position: relative;
-  transform-style: preserve-3d;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #dedede;
+}
+.project-parallax {
+  position: absolute;
+  left: 0;
+  top: -15%;
+  width: 100%;
+  height: 130%;
   will-change: transform;
 }
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  background: radial-gradient(ellipse at var(--mx, 50%) var(--my, 50%), rgba(201,169,110,0.12) 0%, transparent 65%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-.card:hover::before {
-  opacity: 1;
-}
-.card:hover {
-  border-color: rgba(201, 169, 110, 0.4);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(201,169,110,0.08);
-}
-.card img {
+.project-parallax img {
   width: 100%;
-  aspect-ratio: 16/10;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s ease, filter 0.4s ease;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.card:hover img {
+.project-card:hover .project-parallax img {
   transform: scale(1.04);
-  filter: brightness(1.05);
 }
-.card-body {
-  padding: 18px 18px 20px;
-  position: relative;
-  z-index: 1;
-}
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
+.project-caption {
+  margin: 14px 0 10px;
+  text-align: center;
+  font-size: 12px;
   font-weight: 400;
-  color: var(--text);
-  margin-bottom: 6px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.65;
+  color: #111111;
 }
-.card-meta {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
+.project-hover {
+  display: inline;
+  padding-bottom: 3px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: center 100%;
+  transition: background-size 0.8s ease;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
-.card-arrow {
-  position: absolute;
-  bottom: 18px; right: 18px;
-  width: 32px; height: 32px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  font-size: 16px;
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s;
+.project-card:hover .project-hover,
+.project-card:focus-visible .project-hover {
+  background-size: 100% 1px;
 }
-.card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(0);
+@media (max-width: 991px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+@media (max-width: 767px) {
+  .project-wrap { width: calc(100% - 30px); }
+  .project-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── GALLERY ─── */
@@ -549,7 +467,7 @@ section:not(#home) {
   margin-top: 48px;
 }
 .contact-panel h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 28px;
   font-weight: 400;
   color: var(--text);
@@ -587,85 +505,163 @@ footer p {
   text-transform: uppercase;
 }
 
-/* ─── MODAL ─── */
-.modal {
+/* ─── PROJECT VIEW (horizontal scroll) ─── */
+body.modal-open { overflow: hidden; }
+.project-view {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 8500;
+  background: #ffffff;
   display: none;
+  overflow: hidden;
+}
+.project-view.active { display: block; }
+.project-track {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  width: max-content;
+  min-width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  padding: 136px 90px 60px;
+}
+.pv-meta {
+  flex: 0 0 auto;
+  width: 260px;
+  padding-right: 16px;
+  text-align: right;
+}
+.pv-title {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: #111111;
+  margin-bottom: 34px;
+}
+.pv-row { margin-bottom: 20px; }
+.pv-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b6b6b;
+  margin-bottom: 2px;
+}
+.pv-value {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #111111;
+}
+.pv-figure {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+}
+.pv-figure img {
+  height: 100%;
+  width: auto;
+  aspect-ratio: auto 4 / 3;
+  max-width: 60vw;
+  object-fit: cover;
+  display: block;
+  background: #e6e6e6;
+  cursor: zoom-in;
+}
+.pv-caption {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px 9px;
   pointer-events: none;
 }
-.modal.active {
-  display: block;
-  pointer-events: auto;
+.pv-text {
+  flex: 0 0 auto;
+  width: 435px;
+  padding: 0 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(12px);
+.pv-text p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #111111;
+  margin-bottom: 14px;
 }
-.modal-content {
-  position: absolute;
-  top: 0; right: 0;
-  width: min(860px, 100%);
-  height: 100vh;
-  background: #0c0c0e;
-  overflow-y: auto;
-  padding: 80px 52px 60px;
-  border-left: 1px solid var(--line);
-  animation: slideInRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+.pv-team {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111111;
 }
-@keyframes slideInRight {
-  from { transform: translateX(40px); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
+.pv-team em { font-style: italic; font-weight: 300; }
+.pv-next {
+  flex: 0 0 auto;
+  width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body.modal-open { overflow: hidden; }
-.close-btn {
+.pv-next button {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  padding: 16px 28px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.pv-next button:hover { background: #ffffff; color: #111111; }
+.project-view-close {
   position: fixed;
-  top: 24px; right: 28px;
-  width: 44px; height: 44px;
-  background: rgba(255,255,255,0.06);
+  top: 104px;
+  right: 40px;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
   border: 1px solid var(--line);
   color: var(--text);
   border-radius: 50%;
   font-size: 22px;
   cursor: pointer;
-  z-index: 10001;
-  display: flex;
+  z-index: 8600;
+  display: none;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, border-color 0.2s;
+  transition: border-color 0.2s;
 }
-.close-btn:hover {
-  background: rgba(201,169,110,0.12);
-  border-color: var(--gold);
-}
-#modalTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 300;
-  margin-bottom: 40px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-}
-.project-block {
-  margin: 0 0 48px;
-}
-.project-block img {
-  width: 100%;
-  border-radius: 8px;
-  cursor: zoom-in;
-  display: block;
-  transition: filter 0.3s;
-}
-.project-block img:hover { filter: brightness(1.05); }
-.project-text {
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--muted);
+.project-view.active ~ .project-view-close { display: flex; }
+.project-view-close:hover { border-color: #111111; }
+@media (max-width: 767px) {
+  .project-view { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .project-track {
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    gap: 24px;
+    padding: 110px 15px 40px;
+  }
+  .pv-meta { width: 100%; padding: 0; text-align: left; }
+  .pv-figure { height: auto; width: 100%; }
+  .pv-figure img { width: 100%; height: auto; max-width: none; }
+  .pv-text { width: 100%; padding: 0; }
+  .pv-next { width: 100%; padding: 20px 0; }
+  .project-view-close { top: 96px; right: 16px; }
 }
 
 /* ─── IMAGE OVERLAY ─── */
@@ -734,7 +730,7 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ─── SECTION SCROLL TARGET ─── */
-section { scroll-margin-top: 72px; }
+section { scroll-margin-top: 86px; }
 </style>
 </head>
 <body>
@@ -746,10 +742,8 @@ section { scroll-margin-top: 72px; }
 <!-- INTRO SCREEN -->
 <div id="intro">
   <div class="intro-content">
-    <img src="assets/images/logo.png" alt="Studio-KDC">
-    <h1>Studio-KDC</h1>
-    <p><strong>K</strong>artik &nbsp;<strong>D</strong>esign &nbsp;<strong>C</strong>ollective</p>
-    <span>Tap anywhere to enter</span>
+    <img src="assets/images/logo.jpeg" alt="SPATIAL ANTHOLOGY Logo">
+    <span>TAP ANYWHERE TO ENTER</span>
     <div class="intro-line"></div>
   </div>
 </div>
@@ -758,14 +752,13 @@ section { scroll-margin-top: 72px; }
 <header class="navbar" id="navbar">
   <div class="container nav">
     <div class="brand">
-      <img src="assets/images/logo.png" alt="Studio-KDC">
-      <span>Studio-KDC</span>
+      <img src="assets/images/logo1.jpeg" alt="SPATIAL ANTHOLOGY Logo">
     </div>
     <ul>
       <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -786,100 +779,72 @@ section { scroll-margin-top: 72px; }
     <h1>Timeless spaces for<br><em>modern living</em></h1>
     <p>Climate-responsive, context-driven architecture crafted<br>with clarity, restraint, and purpose.</p>
   </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-<!-- ─── ABOUT ─── -->
-<section id="about">
-  <div class="container">
-    <p class="section-label reveal">About the studio</p>
-    <h2 class="section-title reveal">Studio-KDC</h2>
-
-    <div class="about-top reveal">
-      <div class="about-image">
-        <img src="assets/images/about.jpeg" alt="Studio-KDC">
-      </div>
-      <div class="about-text">
-        <div class="gold-rule"></div>
-        <p><strong>Studio-KDC (Kartik Design Collective)</strong> is an architecture and design practice focused on creating climate-responsive, context-driven spaces.</p>
-        <p>Our work blends modern design thinking with local traditions, materials, and sustainable principles. We believe architecture should be timeless, honest, and rooted in its surroundings.</p>
-        <p>Each project is approached with clarity, restraint, and a deep respect for place, people, and purpose.</p>
-      </div>
-    </div>
-
-    <div class="timeline-wrap reveal">
-      <div class="timeline-card">
-        <h4 id="timelineTitle"></h4>
-        <p id="timelineText"></p>
-      </div>
-      <input type="range" min="0" max="3" step="1" value="0"
-             class="timeline-slider" id="timelineSlider">
-      <div class="timeline-years">
-        <span>2002</span>
-        <span>2014</span>
-        <span>2018</span>
-        <span>2021</span>
-      </div>
-    </div>
-  </div>
+  <a href="#projects" class="hero-scroll-hint" aria-label="Scroll down">
+    <span class="scroll-chevron"></span>
+  </a>
 </section>
 
 <!-- ─── PROJECTS ─── -->
 <section id="projects">
-  <div class="container">
+  <div class="project-wrap">
     <p class="section-label reveal">Selected work</p>
     <h2 class="section-title reveal">Projects</h2>
-    <div class="grid">
+    <div class="project-grid">
 
       <!-- PROJECT 1 -->
-      <article class="card reveal"
+      <article class="project-card reveal" tabindex="0"
         data-title="Chợ Long Biên"
+        data-location="Hanoi, Vietnam"
+        data-typology="Civic · Market"
+        data-client="ALAC Competition"
         data-content='[{"img":"assets/images/project1.png","text":"Located in the dense urban fabric of Hanoi, the Chợ Long Biên Market is envisioned as a hybrid civic infrastructure that merges commerce, culture, and mobility into a community-centric public space. Designed as part of the ALAC competition, the project responds to the growing demand for resilient and inclusive public architecture in rapidly urbanizing cities."},{"img":"assets/images/project11.png","text":"Site Plan"},{"img":"assets/images/project12.png","text":"Eye level point of view"},{"img":"assets/images/project13.png","text":"Retail Block Axonometric view"}]'>
-        <img src="assets/images/project1.png" alt="Chợ Long Biên">
-        <div class="card-body">
-          <h3 class="card-title">Chợ Long Biên</h3>
-          <div class="card-meta">Connecting Community Through Tradition and Modernity</div>
-          <div class="card-arrow">↗</div>
+        <div class="project-media">
+          <div class="project-parallax">
+            <img src="assets/images/project1.png" alt="Chợ Long Biên">
+          </div>
         </div>
+        <h3 class="project-caption"><span class="project-hover">Chợ Long Biên | Hanoi</span></h3>
       </article>
 
       <!-- PROJECT 2 -->
-      <article class="card reveal"
+      <article class="project-card reveal" tabindex="0"
         data-title="Pravaha Homes"
+        data-typology="Retirement Housing"
         data-content='[{"img":"assets/images/project2.png","text":"This retirement housing project is shaped by the flow of the site water stream, creating an organic layout that blends seamlessly with nature. The design features 300 units in total including 100 assisted-living studios, 120 two-bedroom villas, and 80 one-bedroom units — along with community hubs, all planned with elderly-friendly principles like wide pathways, gentle slopes, and landscaped open spaces."},{"img":"assets/images/project22.jpg"},{"img":"assets/images/project23.jpg"}]'>
-        <img src="assets/images/project2.png" alt="Pravaha Homes">
-        <div class="card-body">
-          <h3 class="card-title">Pravaha Homes</h3>
-          <div class="card-meta">Inspired by Flow, Designed for Care</div>
-          <div class="card-arrow">↗</div>
+        <div class="project-media">
+          <div class="project-parallax">
+            <img src="assets/images/project2.png" alt="Pravaha Homes">
+          </div>
         </div>
+        <h3 class="project-caption"><span class="project-hover">Pravaha Homes</span></h3>
       </article>
 
       <!-- PROJECT 3 -->
-      <article class="card reveal"
+      <article class="project-card reveal" tabindex="0"
         data-title="RAAHGAH"
+        data-location="Hyderabad"
+        data-typology="Transit &amp; Tourism Hub"
         data-content='[{"img":"assets/images/project3.png","text":"Located near the historic Falaknuma Palace, this integrated hub merges transportation and tourism into a single civic experience. Combining a high-capacity bus terminal with cultural and public programs, it serves both daily commuters and tourists. The design layers markets, galleries, and plazas through interconnected pedestrian corridors, dissolving rigid zoning."},{"img":"assets/images/project32.jpg"},{"img":"assets/images/project33.jpg"},{"img":"assets/images/project34.jpg"}]'>
-        <img src="assets/images/project3.png" alt="RAAHGAH">
-        <div class="card-body">
-          <h3 class="card-title">RAAHGAH</h3>
-          <div class="card-meta">A 21st-century rethinking of India's most vital node</div>
-          <div class="card-arrow">↗</div>
+        <div class="project-media">
+          <div class="project-parallax">
+            <img src="assets/images/project3.png" alt="RAAHGAH">
+          </div>
         </div>
+        <h3 class="project-caption"><span class="project-hover">RAAHGAH | Hyderabad</span></h3>
       </article>
 
       <!-- PROJECT 4 -->
-      <article class="card reveal"
+      <article class="project-card reveal" tabindex="0"
         data-title="Anaya Hospital"
+        data-location="Secunderabad"
+        data-typology="Healthcare"
         data-content='[{"img":"assets/images/project4.png","text":"Anaya Multispecialty Hospital is a 50-bedded healthcare facility designed for an Indian-origin doctor returning after 25 years of practice abroad, driven by a personal mission to uplift healthcare access in his hometown near Alwal-Tumkunta, Secunderabad. Set on a 1.29-acre suburban site, the hospital is envisioned as a trusted community anchor offering ethical, patient-centric care."},{"img":"assets/images/project42.jpg"},{"img":"assets/images/project43.jpg"},{"img":"assets/images/project44.jpg"},{"img":"assets/images/project45.jpg"}]'>
-        <img src="assets/images/project4.png" alt="Anaya Hospital">
-        <div class="card-body">
-          <h3 class="card-title">Anaya Hospital</h3>
-          <div class="card-meta">Patient-centric community healthcare anchor</div>
-          <div class="card-arrow">↗</div>
+        <div class="project-media">
+          <div class="project-parallax">
+            <img src="assets/images/project4.png" alt="Anaya Hospital">
+          </div>
         </div>
+        <h3 class="project-caption"><span class="project-hover">Anaya Hospital | Secunderabad</span></h3>
       </article>
 
     </div>
@@ -917,6 +882,26 @@ section { scroll-margin-top: 72px; }
   </div>
 </section>
 
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label reveal">About the studio</p>
+    <h2 class="section-title reveal">SPATIAL ANTHOLOGY</h2>
+
+    <div class="about-top reveal">
+      <div class="about-image">
+        <img src="assets/images/about.jpeg" alt="Studio-KDC">
+      </div>
+      <div class="about-text">
+        <div class="gold-rule"></div>
+        <p><strong>Studio-KDC (Kartik Design Collective)</strong> is an architecture and design practice focused on creating climate-responsive, context-driven spaces.</p>
+        <p>Our work blends modern design thinking with local traditions, materials, and sustainable principles. We believe architecture should be timeless, honest, and rooted in its surroundings.</p>
+        <p>Each project is approached with clarity, restraint, and a deep respect for place, people, and purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── CONTACT ─── -->
 <section id="contact">
   <div class="container">
@@ -942,19 +927,15 @@ section { scroll-margin-top: 72px; }
 
 <footer>
   <div class="container">
-    <p>© 2025 Studio-KDC · Kartik Design Collective · Visakhapatnam</p>
+    <p>© SPATIAL ANTHOLOGY · VISAKHAPATNAM</p>
   </div>
 </footer>
 
-<!-- PROJECT MODAL -->
-<div class="modal" id="projectModal">
-  <div class="modal-overlay"></div>
-  <div class="modal-content">
-    <button class="close-btn">&times;</button>
-    <h2 id="modalTitle"></h2>
-    <div id="modalBody"></div>
-  </div>
+<!-- PROJECT VIEW (full screen, scrolls sideways) -->
+<div class="project-view" id="projectView" data-lenis-prevent>
+  <div class="project-track" id="projectTrack"></div>
 </div>
+<button class="project-view-close" id="projectViewClose" aria-label="Close project">&times;</button>
 
 <!-- IMAGE ZOOM OVERLAY -->
 <div class="image-overlay" id="imageOverlay">
@@ -967,7 +948,26 @@ section { scroll-margin-top: 72px; }
   <img class="lightbox-img" id="lightboxImg" alt="">
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script>
+/* ─── SMOOTH SCROLL (Lenis) ─── */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lenis = null;
+if (window.Lenis && !reduceMotion) {
+  lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 1 });
+  const rafLoop = t => { lenis.raf(t); requestAnimationFrame(rafLoop); };
+  requestAnimationFrame(rafLoop);
+}
+function smoothScrollTo(target) {
+  if (lenis) {
+    // numeric target: lands the section 86px below the top, under the fixed navbar
+    const y = target.getBoundingClientRect().top + window.scrollY - 86;
+    lenis.scrollTo(Math.max(0, y));
+  } else {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 /* ─── CURSOR ─── */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -984,7 +984,7 @@ document.addEventListener('mousemove', e => {
   ring.style.top  = (ry - 18) + 'px';
   requestAnimationFrame(animRing);
 })();
-document.querySelectorAll('a, button, .card, .masonry img').forEach(el => {
+document.querySelectorAll('a, button, .project-card, .masonry img').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.style.transform = 'scale(2)';
     ring.style.transform = 'scale(1.5)';
@@ -1031,9 +1031,18 @@ navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     dismissIntro();
+    closeProject();
     const target = document.querySelector(link.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    if (target) smoothScrollTo(target);
   });
+});
+
+/* ─── HERO SCROLL HINT ─── */
+const scrollHint = document.querySelector('.hero-scroll-hint');
+scrollHint.addEventListener('click', e => {
+  e.preventDefault();
+  const next = document.querySelector('#home ~ section');
+  if (next) smoothScrollTo(next);
 });
 
 /* ─── SCROLL REVEAL ─── */
@@ -1046,102 +1055,192 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ─── 3D TILT ON CARDS ─── */
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
-    const tiltX = dy * -10;
-    const tiltY = dx * 10;
-    card.style.transform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
-    // Move glow with mouse
-    const pctX = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-    const pctY = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-    card.style.setProperty('--mx', pctX + '%');
-    card.style.setProperty('--my', pctY + '%');
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)';
-  });
-});
-
-/* ─── TIMELINE ─── */
-const educationData = [
-  { title: "Birth", text: "Born in Visakhapatnam" },
-  { title: "2014 – 2018 · High School", text: "Vijayam Techno School, Visakhapatnam, Andhra Pradesh" },
-  { title: "2018 – 2020 · Secondary High School", text: "Ascent Junior College, Visakhapatnam, Andhra Pradesh" },
-  { title: "2021 – 2026 · B.Arch", text: "School of Planning and Architecture, JNAFAU, Hyderabad" }
-];
-const slider = document.getElementById('timelineSlider');
-const tlTitle = document.getElementById('timelineTitle');
-const tlText  = document.getElementById('timelineText');
-function updateTimeline(i) {
-  tlTitle.textContent = educationData[i].title;
-  tlText.textContent  = educationData[i].text;
-}
-updateTimeline(0);
-slider.addEventListener('input', () => updateTimeline(+slider.value));
-
-/* ─── MODAL ─── */
-const modal       = document.getElementById('projectModal');
-const modalTitle  = document.getElementById('modalTitle');
-const modalBody   = document.getElementById('modalBody');
-const closeBtn    = document.querySelector('.close-btn');
-const modalOverlay = document.querySelector('.modal-overlay');
-const imageOverlay = document.getElementById('imageOverlay');
-const overlayImg   = document.getElementById('overlayImage');
+/* ─── PROJECT VIEW (horizontal scroll) ─── */
+const projectView      = document.getElementById('projectView');
+const projectTrack     = document.getElementById('projectTrack');
+const projectViewClose = document.getElementById('projectViewClose');
+const imageOverlay     = document.getElementById('imageOverlay');
+const overlayImg       = document.getElementById('overlayImage');
+const projectCards     = [...document.querySelectorAll('.project-card')];
+let viewLenis = null;
+let openedFrom = null;
 
 function decodeHTML(str) {
   const t = document.createElement('textarea');
   t.innerHTML = str;
   return t.value;
 }
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+function isStacked() { return window.innerWidth < 768; }
 
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    modalTitle.textContent = card.dataset.title;
-    modalBody.innerHTML = '';
-    const content = JSON.parse(decodeHTML(card.dataset.content));
-    content.forEach(block => {
-      const wrap = document.createElement('div');
-      wrap.className = 'project-block';
-      const img = document.createElement('img');
-      img.src = block.img;
-      img.addEventListener('click', e => {
-        e.stopPropagation();
-        overlayImg.src = img.src;
-        imageOverlay.classList.add('active');
-      });
-      wrap.appendChild(img);
-      if (block.text) {
-        const p = document.createElement('p');
-        p.className = 'project-text';
-        p.textContent = block.text;
-        wrap.appendChild(p);
-      }
-      modalBody.appendChild(wrap);
+function buildProjectView(card, index) {
+  const d = card.dataset;
+  const content = JSON.parse(decodeHTML(d.content));
+  projectTrack.innerHTML = '';
+
+  // Meta column: title + label/value rows (rows without a value are skipped)
+  const meta = el('div', 'pv-meta');
+  meta.appendChild(el('h2', 'pv-title', d.title));
+  [['Location', d.location], ['Year', d.year], ['Typology', d.typology], ['Client', d.client]]
+    .forEach(([label, value]) => {
+      if (!value) return;
+      const row = el('div', 'pv-row');
+      row.appendChild(el('span', 'pv-label', label));
+      row.appendChild(el('span', 'pv-value', value));
+      meta.appendChild(row);
     });
-    modal.classList.add('active');
-    document.body.classList.add('modal-open');
-  });
-});
+  projectTrack.appendChild(meta);
 
-function closeModal() {
-  modal.classList.remove('active');
+  // Images; the first block's text becomes the description column after the first image
+  content.forEach((block, i) => {
+    const fig = el('div', 'pv-figure');
+    const img = document.createElement('img');
+    img.src = block.img;
+    img.alt = (i > 0 && block.text) ? block.text : d.title;
+    img.addEventListener('load', () => { if (viewLenis) viewLenis.resize(); });
+    img.addEventListener('click', () => {
+      overlayImg.src = img.src;
+      imageOverlay.classList.add('active');
+    });
+    fig.appendChild(img);
+    if (i > 0 && block.text) fig.appendChild(el('span', 'pv-caption', block.text));
+    projectTrack.appendChild(fig);
+
+    if (i === 0 && block.text) {
+      const txt = el('div', 'pv-text');
+      block.text.split(/\n+/).forEach(par => txt.appendChild(el('p', '', par)));
+      if (d.team) {
+        const team = el('p', 'pv-team', 'Team : ');
+        team.appendChild(el('em', '', d.team));
+        txt.appendChild(team);
+      }
+      projectTrack.appendChild(txt);
+    }
+  });
+
+  // Next project card
+  const next = el('div', 'pv-next');
+  const btn = el('button', '', 'Next Project \u2192');
+  btn.type = 'button';
+  btn.addEventListener('click', () => openProject(projectCards[(index + 1) % projectCards.length], false));
+  next.appendChild(btn);
+  projectTrack.appendChild(next);
+}
+
+function onViewWheel(e) {
+  if (isStacked()) return;
+  e.preventDefault();
+  projectView.scrollLeft += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+}
+function startViewScroll() {
+  stopViewScroll();
+  projectView.scrollLeft = 0;
+  projectView.scrollTop = 0;
+  if (window.Lenis && !reduceMotion && !isStacked()) {
+    viewLenis = new Lenis({
+      wrapper: projectView,
+      content: projectTrack,
+      orientation: 'horizontal',
+      gestureOrientation: 'both',
+      smoothWheel: true,
+      lerp: 0.09
+    });
+    const loop = t => { if (!viewLenis) return; viewLenis.raf(t); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  } else {
+    projectView.addEventListener('wheel', onViewWheel, { passive: false });
+  }
+}
+function stopViewScroll() {
+  if (viewLenis) { viewLenis.destroy(); viewLenis = null; }
+  projectView.removeEventListener('wheel', onViewWheel);
+}
+function viewScrollBy(delta) {
+  if (viewLenis) {
+    const anim = viewLenis.animate;
+    const base = (anim && anim.isRunning) ? anim.to : viewLenis.targetScroll;
+    viewLenis.scrollTo(Math.max(0, Math.min(viewLenis.limit, base + delta)));
+  }
+  else if (isStacked()) projectView.scrollTop += delta;
+  else projectView.scrollLeft += delta;
+}
+
+function openProject(card, pushHistory = true) {
+  const index = projectCards.indexOf(card);
+  buildProjectView(card, index);
+  if (!projectView.classList.contains('active')) {
+    openedFrom = card;
+    projectView.classList.add('active');
+    document.body.classList.add('modal-open');
+    if (lenis) lenis.stop();
+    if (pushHistory) history.pushState({ project: index }, '');
+  }
+  startViewScroll();
+  projectViewClose.focus();
+}
+function closeProject(viaHistory = true) {
+  if (!projectView.classList.contains('active')) return;
+  stopViewScroll();
+  projectView.classList.remove('active');
   document.body.classList.remove('modal-open');
   imageOverlay.classList.remove('active');
   overlayImg.src = '';
+  if (lenis) lenis.start();
+  if (openedFrom) openedFrom.focus();
+  if (viaHistory && history.state && history.state.project != null) history.back();
 }
-closeBtn.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', closeModal);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+projectCards.forEach(card => {
+  card.addEventListener('click', () => openProject(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(card); }
+  });
+});
+projectViewClose.addEventListener('click', () => closeProject());
+window.addEventListener('popstate', () => closeProject(false));
+document.addEventListener('keydown', e => {
+  if (!projectView.classList.contains('active')) return;
+  if (e.key === 'Escape') { closeProject(); return; }
+  if (['ArrowRight', 'ArrowDown', 'PageDown'].includes(e.key)) { e.preventDefault(); viewScrollBy(420); }
+  if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key))     { e.preventDefault(); viewScrollBy(-420); }
+});
 imageOverlay.addEventListener('click', () => {
   imageOverlay.classList.remove('active');
   overlayImg.src = '';
 });
+
+/* ─── PROJECT PARALLAX ─── */
+const parallaxLayers = [...document.querySelectorAll('.project-parallax')];
+function updateParallax() {
+  const vh = window.innerHeight;
+  parallaxLayers.forEach(layer => {
+    const r = layer.parentElement.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > vh) return;
+    // -1 when the tile sits at the top of the viewport, +1 at the bottom
+    const progress = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+    const shift = -progress * r.height * 0.15;
+    layer.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
+  });
+}
+if (!reduceMotion && parallaxLayers.length) {
+  if (lenis) {
+    lenis.on('scroll', updateParallax);
+  } else {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { updateParallax(); ticking = false; });
+    }, { passive: true });
+  }
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+}
 
 /* ─── GALLERY LIGHTBOX ─── */
 const lightbox    = document.getElementById('lightbox');
