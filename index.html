@@ -435,6 +435,111 @@ section:not(#home) {
   .project-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── SERVICES / JOURNEY ─── */
+#services .section-title { max-width: 640px; }
+.journey {
+  position: relative;
+  margin-top: 56px;
+  padding-left: 30px;
+}
+.journey::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 1px;
+  background: var(--line);
+}
+.journey-step {
+  position: relative;
+  margin-bottom: 28px;
+}
+.journey-step:last-child { margin-bottom: 0; }
+.journey-dot {
+  position: absolute;
+  top: 30px;
+  left: -30px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #111111;
+}
+.journey-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid #111111;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+.journey-step.is-current .journey-dot,
+.journey-step.is-current .journey-dot::after {
+  background: #d9531e;
+  border-color: #d9531e;
+  opacity: 1;
+}
+.journey-card {
+  background: #111111;
+  border-radius: 22px;
+  padding: 30px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 22px;
+  align-items: center;
+}
+.journey-num {
+  font-size: 26px;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1;
+}
+.journey-body h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.journey-body p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 440px;
+}
+.journey-btn {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.journey-btn:hover { background: #ffffff; color: #111111; }
+.journey-step.is-current .journey-card { background: #d9531e; }
+.journey-step.is-current .journey-num,
+.journey-step.is-current .journey-body h3 { color: #111111; }
+.journey-step.is-current .journey-body p { color: rgba(17, 17, 17, 0.72); }
+.journey-step.is-current .journey-btn { border-color: #111111; color: #111111; }
+.journey-step.is-current .journey-btn:hover { background: #111111; color: #ffffff; }
+@media (max-width: 700px) {
+  .journey { padding-left: 22px; }
+  .journey-dot { left: -22px; }
+  .journey-card { grid-template-columns: 1fr; gap: 14px; padding: 26px 22px; }
+  .journey-btn { justify-self: start; }
+}
+
 /* ─── GALLERY ─── */
 .masonry {
   column-count: 4;
@@ -664,6 +769,96 @@ body.modal-open { overflow: hidden; }
   .project-view-close { top: 96px; right: 16px; }
 }
 
+/* ─── BOOK MODAL ─── */
+.book-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.book-modal.active { display: flex; }
+.book-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+.book-box {
+  position: relative;
+  width: min(440px, 100%);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 44px 38px 38px;
+  text-align: center;
+  animation: modalCenterIn 0.4s ease forwards;
+}
+.book-box-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: none;
+  color: #111111;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+.book-box-close:hover { border-color: #111111; }
+.book-box-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d9531e;
+  margin-bottom: 14px;
+}
+.book-box h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #111111;
+  margin-bottom: 16px;
+}
+.book-box p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+.book-box-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.book-box-actions a {
+  display: block;
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.book-box-actions a.primary {
+  background: #111111;
+  color: #ffffff;
+}
+.book-box-actions a.primary:hover { background: #d9531e; }
+.book-box-actions a.secondary {
+  border: 1px solid var(--line);
+  color: #111111;
+}
+.book-box-actions a.secondary:hover { border-color: #111111; }
+
 /* ─── IMAGE OVERLAY ─── */
 .image-overlay {
   position: fixed;
@@ -756,6 +951,7 @@ section { scroll-margin-top: 86px; }
     </div>
     <ul>
       <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#about">About</a></li>
@@ -779,9 +975,86 @@ section { scroll-margin-top: 86px; }
     <h1>Designing Spaces That<br><em>Become Stories</em></h1>
     <p>Spatial Anthology is a spatial practice that views architecture as a collection of meaningful spatial experiences. <br>Every project is conceived as a unique response to its context, culture, and people—forming part of an evolving anthology of places that inspire, connect, and endure.</p>
   </div>
-  <a href="#projects" class="hero-scroll-hint" aria-label="Scroll down">
+  <a href="#services" class="hero-scroll-hint" aria-label="Scroll down">
     <span class="scroll-chevron"></span>
   </a>
+</section>
+
+<!-- ─── SERVICES / PROCESS ─── -->
+<section id="services">
+  <div class="container">
+    <p class="section-label reveal">How we work</p>
+    <h2 class="section-title reveal">Let&rsquo;s get started.<br>Where are you on the journey?</h2>
+
+    <div class="journey">
+      <div class="journey-step is-current reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">0</span>
+          <div class="journey-body">
+            <h3>Discovery Call</h3>
+            <p>A free 30-minute conversation to understand your project and see if we&rsquo;re the right fit for each other.</p>
+          </div>
+          <button type="button" class="journey-btn" id="bookBtn">Book <span>&rarr;</span></button>
+        </div>
+      </div>
+
+      <div class="journey-step reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">1</span>
+          <div class="journey-body">
+            <h3>Brief &amp; Site Study</h3>
+            <p>We visit the site, take measurements, and work with you to define the brief, budget, and timeline.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-step reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">2</span>
+          <div class="journey-body">
+            <h3>Concept Design</h3>
+            <p>We explore spatial ideas and present initial design options, sketches, and material directions for your feedback.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-step reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">3</span>
+          <div class="journey-body">
+            <h3>Design Development</h3>
+            <p>The chosen concept is developed further, with structure, materials, and detail resolved.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-step reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">4</span>
+          <div class="journey-body">
+            <h3>Approvals &amp; Working Drawings</h3>
+            <p>We prepare drawings for statutory approvals and issue detailed construction documentation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-step reveal">
+        <span class="journey-dot"></span>
+        <div class="journey-card">
+          <span class="journey-num">5</span>
+          <div class="journey-body">
+            <h3>Construction &amp; Handover</h3>
+            <p>We supervise the build on site and walk you through the completed space at handover.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ─── PROJECTS ─── -->
@@ -890,7 +1163,7 @@ section { scroll-margin-top: 86px; }
 
     <div class="about-top reveal">
       <div class="about-image">
-        <img src="assets/images/about.jpeg" alt="SPATIAL ANTHOLOGY">
+        <img src="assets/images/about.png" alt="SPATIAL ANTHOLOGY">
       </div>
       <div class="about-text">
         <div class="gold-rule"></div>
@@ -937,6 +1210,21 @@ section { scroll-margin-top: 86px; }
 </div>
 <button class="project-view-close" id="projectViewClose" aria-label="Close project">&times;</button>
 
+<!-- BOOK MODAL -->
+<div class="book-modal" id="bookModal">
+  <div class="book-modal-overlay"></div>
+  <div class="book-box">
+    <button class="book-box-close" id="bookBoxClose" aria-label="Close">&times;</button>
+    <p class="book-box-eyebrow">Step 0 &middot; Discovery Call</p>
+    <h3>Let&rsquo;s talk about your project</h3>
+    <p>A free 30-minute call to walk through your site, goals, and timeline, and see if we&rsquo;re the right studio for it. Reach out and we&rsquo;ll set up a time that works for you.</p>
+    <div class="book-box-actions">
+      <a class="primary" href="mailto:pvsskartik8@gmail.com?subject=Discovery%20Call%20Request">Email pvsskartik8@gmail.com</a>
+      <a class="secondary" href="tel:+919154469333">Call +91 91544 69333</a>
+    </div>
+  </div>
+</div>
+
 <!-- IMAGE ZOOM OVERLAY -->
 <div class="image-overlay" id="imageOverlay">
   <img id="overlayImage" alt="">
@@ -952,8 +1240,11 @@ section { scroll-margin-top: 86px; }
 <script>
 /* ─── SMOOTH SCROLL (Lenis) ─── */
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Lenis' smooth-scroll math gets unreliable on touch/coarse-pointer input,
+// where native momentum scrolling already feels good — so skip it there.
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 let lenis = null;
-if (window.Lenis && !reduceMotion) {
+if (window.Lenis && !reduceMotion && !isTouchDevice) {
   lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 1 });
   const rafLoop = t => { lenis.raf(t); requestAnimationFrame(rafLoop); };
   requestAnimationFrame(rafLoop);
@@ -1241,6 +1532,28 @@ if (!reduceMotion && parallaxLayers.length) {
   window.addEventListener('resize', updateParallax);
   updateParallax();
 }
+
+/* ─── BOOK MODAL ─── */
+const bookBtn      = document.getElementById('bookBtn');
+const bookModal     = document.getElementById('bookModal');
+const bookBoxClose  = document.getElementById('bookBoxClose');
+const bookOverlayEl = document.querySelector('.book-modal-overlay');
+function openBookModal() {
+  bookModal.classList.add('active');
+  document.body.classList.add('modal-open');
+  if (lenis) lenis.stop();
+}
+function closeBookModal() {
+  bookModal.classList.remove('active');
+  document.body.classList.remove('modal-open');
+  if (lenis) lenis.start();
+}
+if (bookBtn) bookBtn.addEventListener('click', openBookModal);
+bookBoxClose.addEventListener('click', closeBookModal);
+bookOverlayEl.addEventListener('click', closeBookModal);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && bookModal.classList.contains('active')) closeBookModal();
+});
 
 /* ─── GALLERY LIGHTBOX ─── */
 const lightbox    = document.getElementById('lightbox');
